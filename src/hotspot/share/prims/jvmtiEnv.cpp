@@ -1341,6 +1341,7 @@ JvmtiEnv::RunAgentThread(jthread thread, jvmtiStartFunction proc, const void* ar
     }
 
     java_lang_Thread::set_thread(thread_hndl(), new_thread);
+    java_lang_Thread::set_thread_nid(thread_hndl());
     java_lang_Thread::set_priority(thread_hndl(), (ThreadPriority)priority);
     java_lang_Thread::set_daemon(thread_hndl());
 

@@ -1760,6 +1760,7 @@ int java_lang_Thread::_stackSize_offset;
 int java_lang_Thread::_tid_offset;
 int java_lang_Thread::_thread_status_offset;
 int java_lang_Thread::_park_blocker_offset;
+int java_lang_Thread::_nid_offset = 0;
 
 #define THREAD_FIELDS_DO(macro) \
   macro(_name_offset,          k, vmSymbols::name_name(), string_signature, false); \
@@ -1773,6 +1774,7 @@ int java_lang_Thread::_park_blocker_offset;
   macro(_stillborn_offset,     k, "stillborn", bool_signature, false); \
   macro(_stackSize_offset,     k, "stackSize", long_signature, false); \
   macro(_tid_offset,           k, "tid", long_signature, false); \
+  macro(_nid_offset,           k, "nid", long_signature, false); \
   macro(_thread_status_offset, k, "threadStatus", int_signature, false); \
   macro(_park_blocker_offset,  k, "parkBlocker", object_signature, false)
 
@@ -1836,6 +1838,10 @@ void java_lang_Thread::set_priority(oop java_thread, ThreadPriority priority) {
   java_thread->int_field_put(_priority_offset, priority);
 }
 
+void java_lang_Thread::set_thread_nid(oop java_thread) {
+  jlong nid = (jlong) thread(java_thread)->osthread()->thread_id();
+  java_thread->long_field_put(_nid_offset, nid);
+}
 
 oop java_lang_Thread::threadGroup(oop java_thread) {
   return java_thread->obj_field(_group_offset);

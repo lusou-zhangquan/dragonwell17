@@ -200,6 +200,11 @@ public class Thread implements Runnable {
      */
     private final long tid;
 
+    /*
+     * Thread native id
+     */
+    private long nid;
+
     /* For generating thread ID */
     private static long threadSeqNumber;
 
@@ -1751,7 +1756,7 @@ public class Thread implements Runnable {
      * @since 1.5
      */
     public long getId() {
-        return tid;
+        return nid;
     }
 
     /**

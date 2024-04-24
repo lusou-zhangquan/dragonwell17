@@ -117,6 +117,7 @@ void ServiceThread::initialize() {
     }
 
     java_lang_Thread::set_thread(thread_oop(), thread);
+    java_lang_Thread::set_thread_nid(thread_oop());
     java_lang_Thread::set_priority(thread_oop(), NearMaxPriority);
     java_lang_Thread::set_daemon(thread_oop());
     thread->set_threadObj(thread_oop());

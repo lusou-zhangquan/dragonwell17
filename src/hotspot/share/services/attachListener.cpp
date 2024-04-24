@@ -499,6 +499,7 @@ void AttachListener::init() {
     }
 
     java_lang_Thread::set_thread(thread_oop(), listener_thread);
+    java_lang_Thread::set_thread_nid(thread_oop());
     java_lang_Thread::set_daemon(thread_oop());
 
     listener_thread->set_threadObj(thread_oop());

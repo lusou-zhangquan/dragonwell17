@@ -410,6 +410,7 @@ class java_lang_Thread : AllStatic {
   static int _stillborn_offset;
   static int _stackSize_offset;
   static int _tid_offset;
+  static int _nid_offset;
   static int _thread_status_offset;
   static int _park_blocker_offset;
 
@@ -431,6 +432,8 @@ class java_lang_Thread : AllStatic {
   // Priority
   static ThreadPriority priority(oop java_thread);
   static void set_priority(oop java_thread, ThreadPriority priority);
+
+  static void set_thread_nid(oop java_thread);
   // Thread group
   static oop  threadGroup(oop java_thread);
   // Stillborn

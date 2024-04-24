@@ -916,6 +916,7 @@ JavaThread* CompileBroker::make_thread(ThreadType type, jobject thread_handle, C
     if (new_thread != NULL && new_thread->osthread() != NULL) {
 
       java_lang_Thread::set_thread(JNIHandles::resolve_non_null(thread_handle), new_thread);
+      java_lang_Thread::set_thread_nid(JNIHandles::resolve_non_null(thread_handle));
 
       // Note that this only sets the JavaThread _priority field, which by
       // definition is limited to Java priorities and not OS priorities.

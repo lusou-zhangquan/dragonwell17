@@ -748,6 +748,7 @@ static void create_initial_thread(Handle thread_group, JavaThread* thread,
   // constructor calls Thread.current(), which must be set here for the
   // initial thread.
   java_lang_Thread::set_thread(thread_oop(), thread);
+  java_lang_Thread::set_thread_nid(thread_oop());
   java_lang_Thread::set_priority(thread_oop(), NormPriority);
   thread->set_threadObj(thread_oop());
 
@@ -833,6 +834,7 @@ void JavaThread::allocate_threadObj(Handle thread_group, const char* thread_name
   // constructor calls Thread.current(), which must be set here.
   java_lang_Thread::set_thread(thread_oop(), this);
   java_lang_Thread::set_priority(thread_oop(), NormPriority);
+  java_lang_Thread::set_thread_nid(thread_oop());
   set_threadObj(thread_oop());
 
   JavaValue result(T_VOID);
@@ -2258,6 +2260,7 @@ void JavaThread::prepare(jobject jni_thread, ThreadPriority prio) {
          "must be initialized");
   set_threadObj(thread_oop());
   java_lang_Thread::set_thread(thread_oop(), this);
+  java_lang_Thread::set_thread_nid(thread_oop());
 
   if (prio == NoPriority) {
     prio = java_lang_Thread::priority(thread_oop());
